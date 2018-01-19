@@ -3,7 +3,7 @@ import LoginScreen from "./presenter";
 
 class Container extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: "Log in"
+    header: null
   });
 
   render() {
