@@ -23,11 +23,21 @@ const LoginScreen = props => (
       />
     </View>
     <View style={styles.content}>
-      <TextInput placeholder={"Username"} />
-      <TextInput placeholder={"Password"} />
-      <TouchableOpacity>
-        <View>
-          <Text>Login</Text>
+      <TextInput
+        placeholder={"Username"}
+        style={styles.textInput}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+      <TextInput
+        placeholder={"Password"}
+        style={styles.textInput}
+        autoCapitalize="none"
+        secureTextEntry={true}
+      />
+      <TouchableOpacity style={styles.touchable}>
+        <View style={styles.button}>
+          <Text style={styles.btnText}>Login</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.fbContainer}>
@@ -42,39 +52,66 @@ const LoginScreen = props => (
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1
+    flex: 1
   },
   header: {
-      flex: 1,
-      backgroundColor: "#4E65B4",
-      alignItems: "center",
-      justifyContent: "center",
-      width
+    flex: 1,
+    backgroundColor: "#4E65B4",
+    alignItems: "center",
+    justifyContent: "center",
+    width
   },
   logo: {
-      width: 180,
-      height: 80,
-      marginTop: 35
+    width: 180,
+    height: 80,
+    marginTop: 30
   },
   content: {
-      flex: 4,
-      backgroundColor: "white",
-      paddingTop: 20,
-      alignItems: "center",
-      justifyContent: "flex-start"
+    flex: 4,
+    backgroundColor: "white",
+    paddingTop: 50,
+    alignItems: "center",
+    justifyContent: "flex-start"
   },
   fbContainer: {
-      marginTop: 50
+    marginTop: 50
   },
   fbView: {
-      flexDirection: "row",
-      alignItems: "center"
+    flexDirection: "row",
+    alignItems: "center"
   },
   fbText: {
-      color: "#3E99EE",
-      marginLeft: 10,
-      fontWeight: "600",
-      fontSize: 14
+    color: "#3E99EE",
+    marginLeft: 10,
+    fontWeight: "600",
+    fontSize: 14
+  },
+  textInput: {
+    height: 50,
+    borderColor: "#bbb",
+    borderWidth: 1, // StyleSheet.hairlineWidth
+    width: width - 80,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+    backgroundColor: "#FAFAFA",
+    fontSize: 14
+  },
+  touchable: {
+    borderRadius: 5,
+    backgroundColor: "#3E99EE",
+    width: width - 80
+  },
+  button:{
+    paddingHorizontal: 7,
+    height: 50,
+    justifyContent: "center"
+  },
+  btnText:{
+    color: "white",
+    fontWeight: "600",
+    textAlign: "center",
+    fontSize: 14
   }
 });
 
