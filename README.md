@@ -1,6 +1,8 @@
 # react-native-instagram-app
 Cloning Instagram with React-Native
 
+## DEVNOTE
+
 ## ngrok
 - https://ngrok.com/download
 - upzip
