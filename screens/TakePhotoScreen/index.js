@@ -1,6 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 
-const TakePhotoScreen = props => <Text>Upload Photo</Text>;
+const TakePhotoScreen = props => (
+  <View>
+    <StatusBar hidden={true} />
+    <Text>Upload Photo</Text>
+  </View>
+);
 
 export default TakePhotoScreen;

@@ -13,7 +13,7 @@ class AppContainer extends Component {
     const { isLoggedIn } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar hidden={true} />
+        <StatusBar hidden={false} />
         {isLoggedIn ? <RootNaviation /> : <LoggedOutNaviagtion />}
       </View>
     );
