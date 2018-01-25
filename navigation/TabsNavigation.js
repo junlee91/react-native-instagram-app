@@ -1,9 +1,9 @@
 import React from "react";
 import { View } from "react-native";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, TabBarBottom } from "react-navigation";
 import HomeRoute from "../routes/HomeRoute";
 import SearchRoute from "../routes/SearchRoute";
-import NotificationRoute from "../routes/NotificationRoute";
+import NotificationsRoute from "../routes/NotificationsRoute";
 import ProfileRoute from "../routes/ProfileRoute";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -42,7 +42,7 @@ const TabsNavigation = TabNavigator(
       }
     },
     Notifications: {
-      screen: NotificationRoute,
+      screen: NotificationsRoute,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <Ionicons
@@ -67,6 +67,18 @@ const TabsNavigation = TabNavigator(
     }
   },
   {
+    tabBarComponent: ({jumpToIndex, ...props, navigation}) => (
+        <TabBarBottom
+            {...props}
+            jumpToIndex={index => {
+                if(index === 2){
+                    navigation.navigate("TakePhoto")
+                } else {
+                    jumpToIndex(index)
+                }
+            }}
+        />
+    ),
     tabBarPosition: "bottom",
     tabBarOptions: {
       showLabel: false,
@@ -74,9 +86,7 @@ const TabsNavigation = TabNavigator(
         backgroundColor: "#FBFBFB",
         height: 45
       }
-    },
-    swipeEnabled: false,
-    animationEnabled: false
+    }
   }
 );
 

@@ -4,7 +4,7 @@ import sharedRoutes, { sharedOptions } from "./sharedRoutes";
 
 const ProfileRoute = StackNavigator(
   {
-    Home: {
+    Profile: {
       screen: ProfileScreen
     },
     ...sharedRoutes

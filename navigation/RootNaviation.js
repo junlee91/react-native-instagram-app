@@ -7,7 +7,7 @@ const RootNavigation = StackNavigator(
     Tabs: {
       screen: TabsNavigation,
       navigationOptions: {
-          header: null
+        header: null
       }
     },
     TakePhoto: {

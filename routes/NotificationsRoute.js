@@ -4,7 +4,7 @@ import sharedRoutes, { sharedOptions } from "./sharedRoutes";
 
 const NotificationsRoute = StackNavigator(
   {
-    Home: {
+    Notifications: {
       screen: NotificationsScreen
     },
     ...sharedRoutes
