@@ -19,9 +19,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // getSearch
       dispatch(photoActions.getSearch());
       // getNotifications
+      dispatch(userActions.getNotifications());
       // getProfile
+      dispatch(userActions.getOwnProfile());
     }
   };
 };
 
-export default connect(mapStateToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
