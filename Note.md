@@ -10,3 +10,7 @@
 
 ## Fade-in
 `npm install react-native-fade-in-image --save`
+
+## withNavigation
+`import { withNavigation } from "react-navigation";`
+
