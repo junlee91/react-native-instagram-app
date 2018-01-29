@@ -27,7 +27,7 @@ const HomeRoute = StackNavigator(
         headerRight: (
           <NavButton 
           iconName={"ios-send-outline"}
-          onPress={() => <View/>}
+          onPress={() => (null)}
           />
       )
 
