@@ -9,7 +9,6 @@ import {
   StyleSheet,
   Dimensions
 } from "react-native";
-import { API_URL } from "../../constants";
 
 const { width, height } = Dimensions.get("window");
 
@@ -30,7 +29,7 @@ const SearchScreen = props => (
         </Text>
       ) : (
         props.search.map(photo => (
-          <SquarePhoto key={photo.id} imageURL={API_URL + photo.file} />
+          <SquarePhoto key={photo.id} imageURL={photo.file} />
         ))
       )}
     </View>

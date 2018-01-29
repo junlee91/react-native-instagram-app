@@ -14,3 +14,5 @@
 ## withNavigation
 `import { withNavigation } from "react-navigation";`
 
+## FitImage
+`npm install react-native-fit-image --save`
