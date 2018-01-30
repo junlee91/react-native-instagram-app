@@ -43,7 +43,8 @@ const Photo = props => (
         source={{ uri: props.file }}
         style={{
           width,
-          height: props.is_vertical ? 600 : 250
+          height: props.is_vertical ? width*1.3 : 300,
+          resizeMode: "stretch"
         }}
       />
     </FadeIn>

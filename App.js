@@ -10,7 +10,7 @@ import AppContainer from "./components/AppContainer";
 
 const { persistor, store } = configureStore();
 
-//store.dispatch({type: "LOG_OUT"}); //shorcut to logout
+//store.dispatch({ type: "LOG_OUT" }); //shorcut to logout
 
 class App extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <AppContainer/>
+          <AppContainer />
         </PersistGate>
       </Provider>
     );
