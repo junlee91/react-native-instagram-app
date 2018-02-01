@@ -16,7 +16,13 @@ const { width, height } = Dimensions.get("window");
 
 const Photo = props => (
   <View style={styles.photo}>
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPressOut={() =>
+        props.navigation.navigate("ProfileDetail", {
+          user: props.creator
+        })
+      }
+    >
       <View style={styles.header}>
         <FadeIn>
           <Image
@@ -43,7 +49,7 @@ const Photo = props => (
         source={{ uri: props.file }}
         style={{
           width,
-          height: props.is_vertical ? width*1.3 : 300,
+          height: props.is_vertical ? width * 1.3 : 300,
           resizeMode: "stretch"
         }}
       />
