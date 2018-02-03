@@ -15,10 +15,16 @@ class Container extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const { getProfile } = this.props;
     const { profileObject: { username } } = this.state;
-    getProfile(username);
+    const completeProfile = await getProfile(username);
+    
+    if (completeProfile.username) {
+      this.setState({
+        profileObject: completeProfile
+      });
+    }
   };
 
   render() {

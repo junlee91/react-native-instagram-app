@@ -147,7 +147,7 @@ function getProfile(username) {
   return (dispatch, getState) => {
     const { user: { token } } = getState();
 
-    fetch(`${API_URL}/users/${username}/`, {
+    return fetch(`${API_URL}/users/${username}/`, {
       headers: {
         Authorization: `JWT ${token}`
       }
