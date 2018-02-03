@@ -42,6 +42,8 @@ Profile.propTypes = {
     bio: PropTypes.string,
     followers_count: PropTypes.number,
     following_count: PropTypes.number,
+    following: PropTypes.bool.isRequired,
+    is_self: PropTypes.bool.isRequired,
     images: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
