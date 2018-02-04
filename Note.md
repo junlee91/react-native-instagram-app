@@ -16,3 +16,6 @@
 
 ## FitImage
 `npm install react-native-fit-image --save`
+
+## Actionsheet
+`npm install react-native-actionsheet --save`
