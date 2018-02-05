@@ -118,7 +118,7 @@ const Profile = props => (
           <View style={styles.photoContainer}>
             {props.profileObject.images &&
               props.profileObject.images.map(photo => (
-                <SquarePhoto key={photo.id} imageURL={photo.file} />
+                <SquarePhoto key={photo.id} imageURL={photo.file} id={photo.id}/>
               ))}
           </View>
         )}
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
 
 Profile.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  refresh: PropTypes.func.isRequired,
+  refresh: PropTypes.func,
   profileObject: PropTypes.shape({
     bio: PropTypes.string,
     followers_count: PropTypes.number,

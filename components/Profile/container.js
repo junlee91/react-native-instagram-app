@@ -11,7 +11,6 @@ const DESTRUCTIVE_INDEX = 1;
 class Container extends Component {
   static propTypes = {
     profileObject: PropTypes.object.isRequired,
-    refresh: PropTypes.func,
     logOut: PropTypes.func.isRequired
   };
   state = {

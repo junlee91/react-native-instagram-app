@@ -7,6 +7,7 @@ import { actionCreators as userActions } from "./user";
 
 const SET_FEED = "SET_FEED";
 const SET_SEARCH = "SET_SEARCH";
+const SET_PHOTO = "SET_PHOTO";
 
 // Action Creators
 
@@ -22,6 +23,13 @@ function setSearch(search) {
     type: SET_SEARCH,
     search
   };
+}
+
+function setPhoto(photoDetail) {
+  return {
+    type: SET_PHOTO,
+    photoDetail
+  }
 }
 
 // API Actions
@@ -47,6 +55,30 @@ function getFeed() {
       });
   };
 }
+
+function getPhoto(photoId){
+  return (dispatch, getState) => {
+    const { user: {token }} = getState();
+
+    fetch(`${API_URL}/images/${photoId}/`, {
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => {
+        //console.log(json);
+        dispatch(setPhoto(json));
+      });
+  }
+}
+
 
 function getSearch() {
   return (dispatch, getState) => {
@@ -140,6 +172,8 @@ function reducer(state = initialState, action) {
       return applySetFeed(state, action);
     case SET_SEARCH:
       return applySetSearch(state, action);
+    case SET_PHOTO:
+      return applySetPhoto(state, action);
     default:
       return state;
   }
@@ -165,10 +199,21 @@ function applySetSearch(state, action) {
   };
 }
 
+function applySetPhoto(state, action) {
+  const { photoDetail } = action;
+
+  //console.log(photoDetail);
+  return {
+    ...state,
+    photoDetail
+  }
+}
+
 // Exports
 
 const actionCreators = {
   getFeed,
+  getPhoto,
   getSearch,
   searchByHashtag,
   likePhoto,
