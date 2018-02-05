@@ -10,7 +10,6 @@ class Container extends Component {
   _update = id => {
     const { getPhoto } = this.props;
     this.setState({
-      isFetching: true,
       id: id
     });
     getPhoto(id);
