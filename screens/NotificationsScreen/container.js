@@ -10,6 +10,11 @@ class Container extends Component {
   state = {
     isFetching: false
   };
+
+  static defaultProps = {
+    notifications: []
+  };
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.notifications) {
       this.setState({

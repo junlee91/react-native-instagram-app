@@ -22,17 +22,19 @@ const SearchScreen = props => (
       />
     }
   >
-    <View style={styles.container}>
-      {props.search.length === 0 && props.searchingBy.length > 1 ? (
-        <Text style={styles.notFound}>
-          No images found for {props.searchingBy}
-        </Text>
-      ) : (
-        props.search.map(photo => (
-          <SquarePhoto key={photo.id} imageURL={photo.file} />
-        ))
-      )}
-    </View>
+    {props.search ? (
+      <View style={styles.container}>
+        {props.search.length === 0 && props.searchingBy.length > 1 ? (
+          <Text style={styles.notFound}>
+            No images found for {props.searchingBy}
+          </Text>
+        ) : (
+          props.search.map(photo => (
+            <SquarePhoto key={photo.id} imageURL={photo.file} />
+          ))
+        )}
+      </View>
+    ) : null}
   </ScrollView>
 );
 

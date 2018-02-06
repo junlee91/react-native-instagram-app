@@ -22,17 +22,19 @@ const NotificationsScreen = props => (
       />
     }
   >
-    <View style={styles.container}>
-      {props.notifications.length === 0 && props.notifications.length > 1 ? (
-        <Text style={styles.notFound}>
-          No notifications yet! Come back soon!
-        </Text>
-      ) : (
-        props.notifications.map(notification => (
-          <Notification key={notification.id} {...notification} />
-        ))
-      )}
-    </View>
+    {props.notification ? (
+      <View style={styles.container}>
+        {props.notifications.length === 0 && props.notifications.length > 1 ? (
+          <Text style={styles.notFound}>
+            No notifications yet! Come back soon!
+          </Text>
+        ) : (
+          props.notifications.map(notification => (
+            <Notification key={notification.id} {...notification} />
+          ))
+        )}
+      </View>
+    ) : null}
   </ScrollView>
 );
 
