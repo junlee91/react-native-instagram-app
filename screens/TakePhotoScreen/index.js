@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, StatusBar } from "react-native";
+import { View, StatusBar } from "react-native";
+import AddPhotoNavigation from "../../navigation/AddPhotoNavigation";
 
 const TakePhotoScreen = props => (
-  <View>
+  <View style={{ flex: 1 }}>
     <StatusBar hidden={true} />
-    <Text>Upload Photo</Text>
+    <AddPhotoNavigation />
   </View>
 );
 
