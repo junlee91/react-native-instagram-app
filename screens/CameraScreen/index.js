@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  CameraRoll
+  CameraRoll,
+  StatusBar
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Camera, Permissions } from "expo";
@@ -42,49 +43,50 @@ class CameraScreen extends Component {
     } else {
       return (
         <View style={styles.container}>
+          <StatusBar hidden={true} />
           {pictureTaken ? (
             <View style={{ flex: 2 }}>
               <FitImage source={{ uri: picture }} style={{ flex: 1 }} />
             </View>
           ) : (
-            <Camera
-              style={styles.camera}
-              type={type}
-              flashMode={flash}
-              ref={camera => (this.camera = camera)}
-            >
-              <TouchableOpacity onPressOut={this._changeType}>
-                <View style={styles.action}>
-                  <MaterialIcons
-                    name={
-                      type === Camera.Constants.Type.back
-                        ? "camera-front"
-                        : "camera-rear"
-                    }
-                    color="white"
-                    size={30}
-                  />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPressOut={this._changeFlash}>
-                <View style={styles.action}>
-                  {flash === Camera.Constants.FlashMode.off && (
-                    <MaterialIcons name={"flash-off"} color="white" size={30} />
-                  )}
-                  {flash === Camera.Constants.FlashMode.on && (
-                    <MaterialIcons name={"flash-on"} color="white" size={30} />
-                  )}
-                  {flash === Camera.Constants.FlashMode.auto && (
+              <Camera
+                style={styles.camera}
+                type={type}
+                flashMode={flash}
+                ref={camera => (this.camera = camera)}
+              >
+                <TouchableOpacity onPressOut={this._changeType}>
+                  <View style={styles.action}>
                     <MaterialIcons
-                      name={"flash-auto"}
+                      name={
+                        type === Camera.Constants.Type.back
+                          ? "camera-front"
+                          : "camera-rear"
+                      }
                       color="white"
                       size={30}
                     />
-                  )}
-                </View>
-              </TouchableOpacity>
-            </Camera>
-          )}
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPressOut={this._changeFlash}>
+                  <View style={styles.action}>
+                    {flash === Camera.Constants.FlashMode.off && (
+                      <MaterialIcons name={"flash-off"} color="white" size={30} />
+                    )}
+                    {flash === Camera.Constants.FlashMode.on && (
+                      <MaterialIcons name={"flash-on"} color="white" size={30} />
+                    )}
+                    {flash === Camera.Constants.FlashMode.auto && (
+                      <MaterialIcons
+                        name={"flash-auto"}
+                        color="white"
+                        size={30}
+                      />
+                    )}
+                  </View>
+                </TouchableOpacity>
+              </Camera>
+            )}
           <View style={styles.btnContainer}>
             {pictureTaken ? (
               <View style={styles.photoActions}>
@@ -100,10 +102,10 @@ class CameraScreen extends Component {
                 </TouchableOpacity>
               </View>
             ) : (
-              <TouchableOpacity onPressOut={this._takePhoto}>
-                <View style={styles.button} />
-              </TouchableOpacity>
-            )}
+                <TouchableOpacity onPressOut={this._takePhoto}>
+                  <View style={styles.button} />
+                </TouchableOpacity>
+              )}
           </View>
         </View>
       );
@@ -157,12 +159,16 @@ class CameraScreen extends Component {
 
   _approvePhoto = async () => {
     const { picture } = this.state;
+    const { navigation: { navigate } } = this.props;
     const saveResult = await CameraRoll.saveToCameraRoll(picture, "photo");
+    navigate("UploadPhoto", {
+      uri: picture
+    });
 
     this.setState({
-        picture: null,
-        pictureTaken: false
-      });
+      picture: null,
+      pictureTaken: false
+    });
   };
 }
 
