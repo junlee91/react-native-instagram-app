@@ -30,7 +30,7 @@ const SearchScreen = props => (
           </Text>
         ) : (
           props.search.map(photo => (
-            <SquarePhoto key={photo.id} imageURL={photo.file} />
+            <SquarePhoto key={photo.id} imageURL={photo.file} id={photo.id}/>
           ))
         )}
       </View>

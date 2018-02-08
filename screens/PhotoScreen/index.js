@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getPhoto: id => {
-      dispatch(photoActions.getPhoto(id));
+      if(id)
+        dispatch(photoActions.getPhoto(id));
     }
   };
 };
