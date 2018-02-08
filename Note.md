@@ -19,3 +19,6 @@
 
 ## Actionsheet
 `npm install react-native-actionsheet --save`
+
+## UUID
+`npm install uuid --save`

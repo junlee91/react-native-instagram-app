@@ -2,6 +2,7 @@
 
 import { API_URL } from "../../constants";
 import { actionCreators as userActions } from "./user";
+import uuidv1 from "uuid/v1";
 
 // Actions
 
@@ -29,7 +30,7 @@ function setPhoto(photoDetail) {
   return {
     type: SET_PHOTO,
     photoDetail
-  }
+  };
 }
 
 // API Actions
@@ -56,9 +57,9 @@ function getFeed() {
   };
 }
 
-function getPhoto(photoId){
+function getPhoto(photoId) {
   return (dispatch, getState) => {
-    const { user: {token }} = getState();
+    const { user: { token } } = getState();
 
     fetch(`${API_URL}/images/${photoId}/`, {
       headers: {
@@ -75,9 +76,8 @@ function getPhoto(photoId){
       .then(json => {
         dispatch(setPhoto(json));
       });
-  }
+  };
 }
-
 
 function getSearch() {
   return (dispatch, getState) => {
@@ -159,6 +159,39 @@ function unlikePhoto(photoId) {
   };
 }
 
+function uploadPhoto(file, caption, location, tags) {
+  const tagsArray = tags.split(",");
+  const data = new FormData();
+  data.append("caption", caption);
+  data.append("location", location);
+  data.append("tags", JSON.stringify(tagsArray));
+  data.append("file", {
+    uri: file,
+    type: "image/jpeg",
+    name: `${uuidv1()}.jpg`
+  });
+
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch(`${API_URL}/images/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "multipart/form-data"
+      },
+      body: data
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.ok) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+}
+
 // Initial State
 
 const initialState = {};
@@ -205,7 +238,7 @@ function applySetPhoto(state, action) {
   return {
     ...state,
     photoDetail
-  }
+  };
 }
 
 // Exports
@@ -216,7 +249,8 @@ const actionCreators = {
   getSearch,
   searchByHashtag,
   likePhoto,
-  unlikePhoto
+  unlikePhoto,
+  uploadPhoto
 };
 
 export { actionCreators };
