@@ -24,7 +24,7 @@ const Profile = props => (
       refreshControl={
         <RefreshControl
           refreshing={props.isFetching}
-          onRefresh={props.getProfile}
+          onRefresh={props.getOwnProfile}
           tintColor={"black"}
           titleColor={"black"}
         />

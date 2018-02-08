@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logOut: () => {
       dispatch(userActions.logout());
+    },
+    getOwnProfile: () => {
+      dispatch(userActions.getOwnProfile());
     }
   };
 };
