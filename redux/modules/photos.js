@@ -73,7 +73,6 @@ function getPhoto(photoId){
         }
       })
       .then(json => {
-        //console.log(json);
         dispatch(setPhoto(json));
       });
   }
