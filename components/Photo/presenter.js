@@ -59,6 +59,7 @@ const Photo = props => (
         isLiked={props.isLiked}
         likeCount={props.likeCount}
         handlePress={props.handlePress}
+        comments={props.comments}
       />
       <View style={styles.comment}>
         <Text style={styles.commentAuthor}>

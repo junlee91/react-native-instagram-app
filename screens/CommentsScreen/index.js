@@ -1,6 +1,11 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { connect } from "react-redux";
+import Container from "./container";
 
-const CommentsScreen = props => <Text>Comments</Text>;
+const mapStateToProps = (state, ownProps) => {
+    const { photos: { feed: { comments} } } = state;
+    return {
+      comments
+    };
+  };
 
-export default CommentsScreen;
+export default connect(mapStateToProps)(Container);
