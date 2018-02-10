@@ -17,7 +17,7 @@ const PhotoActions = props => (
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        //onPressOut={() => props.navigation.navigate("Comments")}
+        onPressOut={() => props.navigation.navigate("Comments")}
       >
         <View style={styles.action}>
           <Ionicons name={"ios-text-outline"} color={"black"} size={30} />
@@ -29,7 +29,7 @@ const PhotoActions = props => (
         </View>
       </TouchableOpacity>
     </View>
-    <TouchableOpacity //onPressOut={() => props.navigation.navigate("Likes")}
+    <TouchableOpacity onPressOut={() => props.navigation.navigate("Likes")}
     >
       <View>
         <Text style={styles.likes}>

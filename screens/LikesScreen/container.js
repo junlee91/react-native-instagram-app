@@ -3,20 +3,18 @@ import PropTypes from "prop-types";
 import LikesScreen from "./presenter";
 
 class Container extends Component {
-  static propTypes = {
-    notifications: PropTypes.array,
-    getNotifications: PropTypes.func.isRequired
-  };
+ 
   state = {
     isFetching: false
   };
-  componentWillReceiveProps = nextProps => {
-    if (nextProps.notifications) {
-      this.setState({
-        isFetching: false
-      });
-    }
-  };
+
+  // componentWillReceiveProps = nextProps => {
+  //   if (nextProps.notifications) {
+  //     this.setState({
+  //       isFetching: false
+  //     });
+  //   }
+  // };
 
   render() {
     return (
@@ -28,11 +26,9 @@ class Container extends Component {
     );
   }
   _refresh = () => {
-    const { getNotifications } = this.props;
     this.setState({
       isFetching: true
     });
-    getNotifications();
   };
 }
 
