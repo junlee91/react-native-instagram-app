@@ -22,7 +22,7 @@ const NotificationsScreen = props => (
       />
     }
   >
-    {props.notification ? (
+    {props.notifications ? (
       <View style={styles.container}>
         {props.notifications.length === 0 && props.notifications.length > 1 ? (
           <Text style={styles.notFound}>
