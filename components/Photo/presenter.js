@@ -69,7 +69,9 @@ const Photo = props => (
       </View>
       {props.comments.length > 0 && (
         <TouchableOpacity
-          onPressOut={() => props.navigation.navigate("Comments")}
+          onPressOut={() => props.navigation.navigate("Comments",{
+            comments: props.comments
+          })}
         >
           <View style={styles.commentsLink}>
             {props.comments.length === 1 ? (

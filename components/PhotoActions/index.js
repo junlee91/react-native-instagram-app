@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { withNavigation } from "react-navigation";
 
 const PhotoActions = props => {
+  const { comments } = props;
   return (
     <View style={styles.container}>
       <View style={styles.actions}>
@@ -18,7 +19,9 @@ const PhotoActions = props => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPressOut={() => props.navigation.navigate("Comments")}
+          onPressOut={() => props.navigation.navigate("Comments", {
+            comments: comments
+          })}
         >
           <View style={styles.action}>
             <Ionicons name={"ios-text-outline"} color={"black"} size={30} />
