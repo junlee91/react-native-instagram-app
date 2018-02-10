@@ -4,7 +4,8 @@ import { View, Text } from "react-native";
 class CommentsScreen extends Component {
 
     render() {
-    console.log(this.props);
+    const { navigation: { state: { params: { comments } } } } = this.props;
+    console.log(comments);
     return <Text>CommentsScreen</Text>;
   }
 }

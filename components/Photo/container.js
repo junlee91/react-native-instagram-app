@@ -16,6 +16,7 @@ class Container extends Component {
   };
 
   render() {
+    //console.log(this.props);
     return (
       <Photo handlePress={this._handlePress} {...this.props} {...this.state} />
     );
