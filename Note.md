@@ -22,3 +22,6 @@
 
 ## UUID
 `npm install uuid --save`
+
+## Expo
+`https://expo.io/@junlee91/react-native-instagram-app`

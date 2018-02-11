@@ -49,44 +49,44 @@ class CameraScreen extends Component {
               <FitImage source={{ uri: picture }} style={{ flex: 1 }} />
             </View>
           ) : (
-              <Camera
-                style={styles.camera}
-                type={type}
-                flashMode={flash}
-                ref={camera => (this.camera = camera)}
-              >
-                <TouchableOpacity onPressOut={this._changeType}>
-                  <View style={styles.action}>
+            <Camera
+              type={type}
+              flashMode={flash}
+              ref={camera => (this.camera = camera)}
+              style={styles.camera}
+            >
+              <TouchableOpacity onPressOut={this._changeType}>
+                <View style={styles.action}>
+                  <MaterialIcons
+                    name={
+                      type === Camera.Constants.Type.back
+                        ? "camera-front"
+                        : "camera-rear"
+                    }
+                    color="white"
+                    size={40}
+                  />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPressOut={this._changeFlash}>
+                <View style={styles.action}>
+                  {flash === Camera.Constants.FlashMode.off && (
+                    <MaterialIcons name={"flash-off"} color="white" size={40} />
+                  )}
+                  {flash === Camera.Constants.FlashMode.on && (
+                    <MaterialIcons name={"flash-on"} color="white" size={40} />
+                  )}
+                  {flash === Camera.Constants.FlashMode.auto && (
                     <MaterialIcons
-                      name={
-                        type === Camera.Constants.Type.back
-                          ? "camera-front"
-                          : "camera-rear"
-                      }
+                      name={"flash-auto"}
                       color="white"
-                      size={30}
+                      size={40}
                     />
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPressOut={this._changeFlash}>
-                  <View style={styles.action}>
-                    {flash === Camera.Constants.FlashMode.off && (
-                      <MaterialIcons name={"flash-off"} color="white" size={30} />
-                    )}
-                    {flash === Camera.Constants.FlashMode.on && (
-                      <MaterialIcons name={"flash-on"} color="white" size={30} />
-                    )}
-                    {flash === Camera.Constants.FlashMode.auto && (
-                      <MaterialIcons
-                        name={"flash-auto"}
-                        color="white"
-                        size={30}
-                      />
-                    )}
-                  </View>
-                </TouchableOpacity>
-              </Camera>
-            )}
+                  )}
+                </View>
+              </TouchableOpacity>
+            </Camera>
+          )}
           <View style={styles.btnContainer}>
             {pictureTaken ? (
               <View style={styles.photoActions}>
@@ -102,16 +102,15 @@ class CameraScreen extends Component {
                 </TouchableOpacity>
               </View>
             ) : (
-                <TouchableOpacity onPressOut={this._takePhoto}>
-                  <View style={styles.button} />
-                </TouchableOpacity>
-              )}
+              <TouchableOpacity onPressOut={this._takePhoto}>
+                <View style={styles.btn} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       );
     }
   }
-
   _changeType = () => {
     this.setState(prevState => {
       if (prevState.type === Camera.Constants.Type.back) {
@@ -121,7 +120,6 @@ class CameraScreen extends Component {
       }
     });
   };
-
   _changeFlash = () => {
     this.setState(prevState => {
       if (prevState.flash === Camera.Constants.FlashMode.off) {
@@ -133,7 +131,6 @@ class CameraScreen extends Component {
       }
     });
   };
-
   _takePhoto = async () => {
     const { pictureTaken } = this.state;
     if (!pictureTaken) {
@@ -142,29 +139,21 @@ class CameraScreen extends Component {
           quality: 0.5,
           exif: true
         });
-        this.setState({
-          picture: takenPhoto.uri,
-          pictureTaken: true
-        });
+        this.setState({ picture: takenPhoto.uri, pictureTaken: true });
       }
     }
   };
-
   _rejectPhoto = () => {
     this.setState({
       picture: null,
       pictureTaken: false
     });
   };
-
   _approvePhoto = async () => {
     const { picture } = this.state;
     const { navigation: { navigate } } = this.props;
     const saveResult = await CameraRoll.saveToCameraRoll(picture, "photo");
-    navigate("UploadPhoto", {
-      uri: picture
-    });
-
+    navigate("UploadPhoto", { url: picture });
     this.setState({
       picture: null,
       pictureTaken: false
@@ -188,7 +177,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  button: {
+  btn: {
     width: 100,
     height: 100,
     backgroundColor: "white",
@@ -200,7 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     height: 40,
     width: 40,
-    margin: 5
+    margin: 10
   },
   photoActions: {
     flexDirection: "row",

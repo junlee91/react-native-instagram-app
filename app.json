@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "react-native-instagram-app",
-    "description": "This project is really great.",
+    "description": "Cloning Instagram with Python Django / React / React-Native",
     "slug": "react-native-instagram-app",
     "privacy": "public",
     "sdkVersion": "24.0.0",
