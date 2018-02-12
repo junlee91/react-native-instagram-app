@@ -39,8 +39,12 @@ class Container extends Component {
   };
 
   render() {
+    const { photoDetail } = this.props;
     //console.log(this.props);
-    return <PhotoScreen {...this.props} {...this.state} refresh={this._refresh}/>;
+    if(photoDetail)
+      return <PhotoScreen {...this.props} {...this.state} refresh={this._refresh}/>;
+    else
+      return null;
   }
 }
 
